@@ -8,7 +8,7 @@ public class DatabaseConnection {
 
     final String url = "jdbc:mysql://localhost:3306/shop?serverTime=CET";
     final String user = "root";
-    final String password = "root";
+    final String password = "D@yt3kj!;";
 
     private DatabaseConnection instance;
     private Connection connection;
