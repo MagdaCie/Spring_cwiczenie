@@ -13,5 +13,7 @@ public class Zadanie3 {
         System.out.println(countryDao.findById(2));
 
         countryDao.addNewCountry(new Country(null, "USA", "US"));
+        countryDao.deleteById(6);
+        countryDao.updateCountry(new Country(10, "Poland", "pl"));
     }
 }

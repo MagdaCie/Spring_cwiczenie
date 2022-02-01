@@ -14,10 +14,14 @@ public class CountryDaoImpl implements CountryDao {
 
     private static final String selectAll = "select * from Country;";
     private static final int COUNTRY_NAME_INDEX = 1;
+    private static final int COUNTRY_NAME_INDEX_UPDATE = 2;
     private static final String selectById = "select * from Country where CO_ID = ?;";
     private static final String addNewCountry = "Insert into Country (CO_NAME, CO_ALIAS) values (?, ?);";
     private static final int ADD_COUNTRY_NAME_INDEX = 1;
     private static final int ADD_COUNTRY_ALIAS_INDEX = 2;
+    private final String deleteById = "delete from Country where CO_ID = ?;";
+    private final int CO_ID_INDEX = 1;
+    private final String sqlUpdate = "Update country SET CO_NAME = ?, CO_ALIAS = ?;";
 
     private Country mapResultSetToCountry(ResultSet resultSet) throws SQLException {
         return new Country(
@@ -56,9 +60,28 @@ public class CountryDaoImpl implements CountryDao {
         preparedStatement.executeUpdate();
     }
 
-    @Override
-    public void deleteById(int id) {
 
+    @Override
+    public void deleteById(int Id) throws SQLException {
+        if(findById(Id)!= null){
+            PreparedStatement preparedStatement = getConnection().prepareStatement(deleteById);
+            preparedStatement.setInt(CO_ID_INDEX, Id);
+            preparedStatement.executeUpdate();
+            preparedStatement.getConnection().close();
+        }
+    }
+
+    @Override
+    public void updateRecord(Country country) throws SQLException {
+        if (findById(country.getId()) != null) {
+            PreparedStatement preparedStatement = getConnection().prepareStatement(sqlUpdate);
+            preparedStatement.setString(ADD_COUNTRY_NAME_INDEX, country.getName());
+            preparedStatement.setString(ADD_COUNTRY_ALIAS_INDEX, country.getAlias());
+            preparedStatement.setInt(COUNTRY_NAME_INDEX_UPDATE, country.getId());
+            preparedStatement.executeUpdate();
+        } else {
+            addNewCountry(country);
+        }
     }
 
     private Connection getConnection() {
