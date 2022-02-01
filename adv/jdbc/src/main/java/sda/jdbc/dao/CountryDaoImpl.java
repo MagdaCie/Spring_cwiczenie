@@ -72,7 +72,7 @@ public class CountryDaoImpl implements CountryDao {
     }
 
     @Override
-    public void updateRecord(Country country) throws SQLException {
+    public void updateCountry(Country country) throws SQLException {
         if (findById(country.getId()) != null) {
             PreparedStatement preparedStatement = getConnection().prepareStatement(sqlUpdate);
             preparedStatement.setString(ADD_COUNTRY_NAME_INDEX, country.getName());
