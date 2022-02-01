@@ -9,19 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CountryDaoImpl implements CountryDao{
+public class CountryDaoImpl implements CountryDao {
 
     private final String selectAll = "select * from Country";
-
-    @Override
-    public List<Country> getAll() throws SQLException {
-        ResultSet resultSet =  getConnection().createStatement().executeQuery(selectAll);
-        List<Country> countries = new ArrayList<>();
-        while (resultSet.next()){
-            countries.add(mapResultSetToCountry(resultSet));
-        }
-        return countries;
-    }
 
     private Country mapResultSetToCountry(ResultSet resultSet) throws SQLException {
         return new Country(
@@ -29,6 +19,16 @@ public class CountryDaoImpl implements CountryDao{
                 resultSet.getString("CO_NAME"),
                 resultSet.getString("CO_ALIAS")
         );
+    }
+
+    @Override
+    public List<Country> getAll() throws SQLException {
+        ResultSet resultSet = getConnection().createStatement().executeQuery(selectAll);
+        List<Country> countries = new ArrayList<>();
+        while (resultSet.next()) {
+            countries.add(mapResultSetToCountry(resultSet));
+        }
+        return countries;
     }
 
     @Override
@@ -45,7 +45,8 @@ public class CountryDaoImpl implements CountryDao{
     public void deleteById(int id) {
 
     }
-    private Connection getConnection(){
+
+    private Connection getConnection() {
         return new DatabaseConnection().getConnection();
     }
 }
