@@ -2,17 +2,17 @@ package sda.jdbc.przyklad4;
 
 public class Country {
 
-    private int id;
+    private Integer id;
     private String name;
     private String alias;
 
-    public Country(int id, String name, String alias) {
+    public Country(Integer id, String name, String alias) {
         this.id = id;
         this.name = name;
         this.alias = alias;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -24,7 +24,7 @@ public class Country {
         return alias;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
