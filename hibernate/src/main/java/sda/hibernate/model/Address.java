@@ -25,7 +25,7 @@ public class Address {
     private String city;
     @Column(name = "CO_POSTAL_CODE")
     private String postalCode;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ADD_CO_ID", referencedColumnName = "CO_ID")
     private Country country;
 
