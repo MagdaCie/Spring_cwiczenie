@@ -1,5 +1,6 @@
 package sda.hibernate.przyklad2;
 
+
 import org.hibernate.Session;
 import sda.hibernate.model.Country;
 import sda.hibernate.util.HibernateUtil;
@@ -7,9 +8,9 @@ import sda.hibernate.util.HibernateUtil;
 public class Przyklad2 {
     public static void main(String[] args) {
         //usePersist();
-        //useMerge();
+        useMerge();
         //useUpdate();
-        useDelete();
+        //useDelete();
     }
 
     //persist() zawsze tworzy nowy obiekt
@@ -22,10 +23,9 @@ public class Przyklad2 {
         session.beginTransaction();
         session.persist(country);
         country.setName("India");
-        session.flush();
+        session.getTransaction().commit();
         session.close();
     }
-
     //merge() aktualizuje lub dodaje nowy obiekt obiektu Session
 // Służy do synchronizowania stanu obiektu w kontekście utrwalania. W przeciwieństwie do poprzedniej metody encja przekazana w argumencie nie jest dołączana do
 // zbioru obiektów zarządzanych. Jest ona kopiowana, kopia trafia pod zarząd EntityManagera lub Session i jest zwracana.
@@ -40,8 +40,8 @@ public class Przyklad2 {
         country.setId(1);
         country.setAlias("ES");
         country = (Country) session.merge(country);
-        country.setName("Spain Changed");
-        session.flush();
+        country.setName("Spain");
+        session.getTransaction().commit();
         session.close();
     }
 
@@ -53,7 +53,7 @@ public class Przyklad2 {
         country.setName("Japan");
         session.update(country);
         country.setAlias("JP");
-        session.flush();
+        session.getTransaction().commit();
         session.close();
     }
 
@@ -61,11 +61,10 @@ public class Przyklad2 {
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         Country country = new Country();
-        country.setId(6);
+        country.setId(3);
         session.delete(country);
-        session.flush();
+        session.getTransaction().commit();
         session.close();
-
     }
 }
 

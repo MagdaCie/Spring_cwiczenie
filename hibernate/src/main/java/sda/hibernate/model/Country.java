@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @NoArgsConstructor
+@NamedQueries({@NamedQuery(name = "country.select.all", query = "select c from Country c")})
 public class Country {
 
     @Id
