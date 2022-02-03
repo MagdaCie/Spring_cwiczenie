@@ -1,5 +1,6 @@
 package sda.hibernate.dao;
 
+
 import org.hibernate.Session;
 import sda.hibernate.util.HibernateUtil;
 
@@ -15,39 +16,64 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
 
     @Override
     public T findById(int id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = openSession();
         T result = session.find(entityClass, id);
         session.close();
         return result;
     }
 
     @Override
-    public void insertObject(Object o) {
+    public void insertObject(T t) {
+        Session session = openSession();
+        session.beginTransaction();
+        session.persist(t);
+        session.getTransaction().commit();
+        session.close();
 
     }
 
     @Override
-    public void deleteObject(Object o) {
+    public void deleteObject(T t) {
+        Session session = openSession();
+        session.beginTransaction();
+        session.delete(t);
+        session.getTransaction().commit();
+        session.close();
+    }
 
+
+    @Override
+    public void deleteObject(int id) {
+        T t = findById(id);
+        if (t != null) {
+            Session session = openSession();
+            session.beginTransaction();
+            session.delete(findById(id));
+            session.getTransaction().commit();
+            session.close();
+        }
+    }
+
+
+    @Override
+    public List<T> getAll() {
+        try (Session session = openSession()) {
+            return session.createQuery("from " + entityClass.getName(), entityClass)
+                    .getResultList();
+        }
     }
 
     @Override
-    public void deleteObject(int T) {
-
+    public List<T> getAll(int maxResults, int firstResoult) {
+        try (Session session = openSession()) {
+            return session.createQuery("from " + entityClass.getName(), entityClass)
+                    .setMaxResults(maxResults)
+                    .setFirstResult(firstResoult)
+                    .getResultList();
+        }
     }
 
-    @Override
-    public void updateObject(Object o, int id) {
-
-    }
-
-    @Override
-    public List getAll() {
-        return null;
-    }
-
-    @Override
-    public List getAll(int maxResults, int firstResoult) {
-        return null;
+    private Session openSession() {
+        return HibernateUtil.getSessionFactory().openSession();
     }
 }
