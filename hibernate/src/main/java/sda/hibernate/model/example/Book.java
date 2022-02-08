@@ -1,4 +1,4 @@
-package sda.hibernate.model;
+package sda.hibernate.model.example;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
