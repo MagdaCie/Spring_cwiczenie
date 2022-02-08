@@ -14,8 +14,12 @@
         <property name="format_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
 
-        <mapping class="sda.hibernate.model.Country" />
         <mapping class="sda.hibernate.model.Address" />
+        <mapping class="sda.hibernate.model.Category" />
+        <mapping class="sda.hibernate.model.Country" />
+        <mapping class="sda.hibernate.model.Order" />
+        <mapping class="sda.hibernate.model.Product" />
+        <mapping class="sda.hibernate.model.User" />
 
     </session-factory>
 

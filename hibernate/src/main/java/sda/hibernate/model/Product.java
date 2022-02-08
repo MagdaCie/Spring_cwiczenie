@@ -16,16 +16,16 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PRO_ID")
     private int id;
-    @Column(name = "PRO DESCRIPTION")
+    @Column(name = "PRO_DESCRIPTION")
     private String description;
-    @Column(name = "PRO NAME")
+    @Column(name = "PRO_NAME")
     private String productName;
-    @Column(name = "PRO PRICE")
+    @Column(name = "PRO_PRICE")
     private BigDecimal productPrice;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PRO_CAT_ID", referencedColumnName = "CAT_ID")
     private Category category;
+
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "products")
     Set<Order> orders;
 }
