@@ -1,8 +1,6 @@
 package sda.hibernate.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,6 +11,8 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = {"address", "orders"})
+@EqualsAndHashCode(exclude = {"address", "orders"})
 public class User {
 
     @Id
