@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -28,5 +29,7 @@ public class Address {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ADD_CO_ID", referencedColumnName = "CO_ID")
     private Country country;
+    @OneToMany(mappedBy = "address")
+    private Set<User> addresses;
 
 }

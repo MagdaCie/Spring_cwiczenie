@@ -1,5 +1,6 @@
 package sda.hibernate.model;
 
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

@@ -1,13 +1,14 @@
 package sda.hibernate.model;
 
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
 public class Category {
 
     @Id
@@ -16,4 +17,5 @@ public class Category {
     private int id;
     @Column(name = "CAT_NAME")
     private String name;
+
 }
