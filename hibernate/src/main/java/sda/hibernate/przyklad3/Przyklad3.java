@@ -4,10 +4,14 @@ package sda.hibernate.przyklad3;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import sda.hibernate.model.Address;
+import sda.hibernate.model.Country;
 import sda.hibernate.util.HibernateUtil;
 
 import java.util.List;
 
+//"join fetch pozwala obejść to ze tabela jest lazy,
+// w przypadku tego zapytania wyciągnie także połącząną tabele,
+// w tym przypadku country"
 
 public class Przyklad3 {
     public static void main(String[] args) {
@@ -25,11 +29,24 @@ public class Przyklad3 {
                 .setParameter("countryName", "Poland");
 
         List<Address> joinedAddressList = queryJoin.getResultList();
-        System.out.println(joinedAddressList.get(0).getCountry().getName());
+        System.out.println("test");
+        Address address = joinedAddressList.get(0);
+        Country country = new Country();
+        country.setName("China");
+        country.setAlias("CH");
+        session.beginTransaction();
+        session.persist(country);
+        session.getTransaction().commit();
         session.close();
-
-
-
+        System.out.println("");
+        address.setCountry(country);
+        System.out.println("");
+        session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.merge(address);
+        session.getTransaction().commit();
+        //System.out.println(joinedAddressList.get(0).getCountry().getName());
+        session.close();
         System.out.println("test");
         HibernateUtil.getSessionFactory().close();
         System.out.println();
