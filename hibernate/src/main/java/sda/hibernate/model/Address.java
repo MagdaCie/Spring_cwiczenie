@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Set;
-
 @Entity
 @NoArgsConstructor
 @Data
@@ -30,6 +29,6 @@ public class Address {
     @JoinColumn(name = "ADD_CO_ID", referencedColumnName = "CO_ID")
     private Country country;
     @OneToMany(mappedBy = "address")
-    private Set<User> addresses;
+    private Set<User> users;
 
 }

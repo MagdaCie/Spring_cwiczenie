@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.time.LocalDate;
 import java.util.List;
 
 public class UserCriteriaDao {
@@ -37,6 +38,10 @@ public class UserCriteriaDao {
         List<User> users = query.getResultList();
         session.close();
         return users;
+    }
+
+    public List<User> findAllBornBetween(LocalDate date1, LocalDate date2) {
+        return null;
     }
 
 }

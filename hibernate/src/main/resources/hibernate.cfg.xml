@@ -14,12 +14,14 @@
         <property name="format_sql">true</property>
         <property name="hbm2ddl.auto">validate</property>
 
-        <mapping class="sda.hibernate.model.Address" />
-        <mapping class="sda.hibernate.model.Category" />
-        <mapping class="sda.hibernate.model.Country" />
-        <mapping class="sda.hibernate.model.Order" />
-        <mapping class="sda.hibernate.model.Product" />
-        <mapping class="sda.hibernate.model.User" />
+        <mapping class="sda.hibernate.model.Country"/>
+        <mapping class="sda.hibernate.model.Address"/>
+        <mapping class="sda.hibernate.model.example.Author"/>
+        <mapping class="sda.hibernate.model.example.Book"/>
+        <mapping class="sda.hibernate.model.User"/>
+        <mapping class="sda.hibernate.model.Order"/>
+        <mapping class="sda.hibernate.model.Product"/>
+        <mapping class="sda.hibernate.model.Category"/>
 
     </session-factory>
 
