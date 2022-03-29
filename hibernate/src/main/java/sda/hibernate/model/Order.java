@@ -1,6 +1,7 @@
 package sda.hibernate.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Entity
 @Table(name = "`Order`")
 @Data
+@NoArgsConstructor
 public class Order {
 
     @Id

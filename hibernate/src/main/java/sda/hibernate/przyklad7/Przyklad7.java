@@ -16,7 +16,7 @@ public class Przyklad7 {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Product product = session.find(Product.class, 2);
         session.close();
-        //userCriteriaDao.findAllWhoBoughtProduct(product).forEach(System.out::println);
+        userCriteriaDao.findAllWhoBoughtProduct(product).forEach(System.out::println);
         userCriteriaDao.findNonCriteriaIsAllWhoBoughtProduct(product).forEach(System.out::println);
     }
 }
